@@ -1,0 +1,42 @@
+@(message: String)(implicit request: RequestHeader)
+
+
+@main{message}{
+    <script>
+       $(document).ready(function(){
+
+            //Open a WebSocket connection.
+            var wsUri = "@routes.Application.wstest().webSocketURL()";
+            websocket = new WebSocket(wsUri);
+
+            //Connected to server
+            websocket.onopen = function(ev) {}
+
+            //Connection close
+            websocket.onclose = function(ev) {};
+
+            //Message Receved
+            websocket.onmessage = function(ev) {
+
+             //alert(ev.data);
+               var a = ev.data.split("_")
+               draw(a[0], a[1], a[2], a[3]);
+            };
+
+
+            //Error
+            websocket.onerror = function(ev) {
+                alert('Error '+ev.data);
+            };
+
+             //Send a Message
+            $('#send').click(function(){
+                var mymessage = 'This is a test message';
+                websocket.send(mymessage);
+            });
+
+
+
+        });
+    </script>
+}
