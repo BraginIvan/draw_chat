@@ -72,4 +72,13 @@ border:1px solid red;
 
 
 
+#resizer-center{
+ height:20px;
+ width:100%;
+ background-color:
+ blue;position:absolute;
+}
+
+
+
 

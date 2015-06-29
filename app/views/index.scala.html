@@ -18,9 +18,18 @@
             //Message Receved
             websocket.onmessage = function(ev) {
 
-             //alert(ev.data);
-               var a = ev.data.split("_")
-               draw(a[0], a[1], a[2], a[3]);
+
+               var request = ev.data.split("_")
+               if(request[0] == "draw"){
+                draw(request[1], request[2], request[3], request[4]);
+                }
+               if(request[0] == "addCanvas"){
+                    add_canvas();
+                }
+                 if(request[0] == "initCanvas"){
+                    init(request[1]);
+                }
+
             };
 
 

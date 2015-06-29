@@ -1,7 +1,11 @@
 
-
-
 flag = false;
+
+
+
+function init_request(i){
+      websocket.send("initCanvas_" + i);
+}
 
 function init(i) {
 
@@ -71,7 +75,7 @@ function findxy(res, e) {
             prevY = currY;
             currX = e.clientX  + $("#column_left_top").scrollLeft() - parseFloat($("#column_left_top").offset().left)  + window.scrollX;
             currY = e.clientY  + $("#column_left_top").scrollTop() - parseFloat($("#column_left_top").offset().top) + window.scrollY;
-            websocket.send(prevX + "_" + currX + "_" + prevY + "_" + currY)
+            websocket.send("draw_" + prevX + "_" + currX + "_" + prevY + "_" + currY)
         }
     }
 }
