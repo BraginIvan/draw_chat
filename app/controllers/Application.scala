@@ -37,21 +37,23 @@ class Application extends Controller {
     ).as("text/javascript")
   }
 
+
+
+
+
   def saveImage = Action(parse.multipartFormData) {implicit request =>
-    request.body.file("myNewFileName").map { picture =>
-      val filename = picture.filename
-      val contentType = picture.contentType
-      picture.ref.moveTo(new File(s"/home/ivan/$filename.png"))
-      Ok("File uploaded")
-    }.getOrElse {
-      Redirect(routes.Application.index).flashing(
-        "error" -> "Missing file")
+    val image_count = request.body.asFormUrlEncoded.getOrElse("pic_count", Seq("0")).head.toInt
+    (0 until image_count).map {imageNumber =>
+      request.body.file("pic" + imageNumber).map { picture =>
+        val filename = picture.filename
+        val contentType = picture.contentType
+        val file: File = new File(s"/home/ivan/$imageNumber.png")
+        file.getAbsoluteFile.delete()
+        picture.ref.moveTo(file.getAbsoluteFile)
+      }
     }
-
+    Ok("")
   }
-
-
-
 
 
 

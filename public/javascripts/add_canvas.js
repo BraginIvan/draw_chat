@@ -29,29 +29,29 @@ function add_canvas(){
 }
 
 
+
 function UploadPic() {
+    var formdata = new FormData();
+    var imageCanvases = document.getElementsByClassName('canvas');
+    formdata.append("pic_count", imageCanvases.length);
+    for (var j = 0; j < imageCanvases.length; j++) {
+        var blobBin = atob(imageCanvases[j].toDataURL().split(',')[1]);
+        var array = [];
+        for(var i = 0; i < blobBin.length; i++) {
+            array.push(blobBin.charCodeAt(i));
+        }
+        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+        formdata.append("pic" + j, file);
+    }
 
 
-var blobBin = atob(canvas.toDataURL().split(',')[1]);
-var array = [];
-for(var i = 0; i < blobBin.length; i++) {
-    array.push(blobBin.charCodeAt(i));
-}
-var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
-
-
-var formdata = new FormData();
-formdata.append("myNewFileName", file);
-
-
-
-$.ajax({
-  type: "POST",
-  url: "save_image",
-  data: formdata,
-  processData: false,
-  contentType: false,
-}).done(function(o) {
-  console.log('saved');
-});
+    $.ajax({
+      type: "POST",
+      url: "save_image",
+      data: formdata,
+      processData: false,
+      contentType: false,
+    }).done(function(o) {
+      console.log(o);
+    });
 }
