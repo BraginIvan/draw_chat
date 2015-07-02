@@ -56,7 +56,6 @@ interact('#resizer-right')
 
 function dragMoveListener (event) {
     var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
 
         detx = event.dx;
         dety = event.dy;

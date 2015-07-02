@@ -18,26 +18,15 @@ class Application extends Controller {
 
 
   def index = Action {implicit request =>
-
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.main_html.ws_connector("Your new application is ready."))
   }
 
 
-  def wstest = WebSocket.acceptWithActor[String, String] { request =>
+  def webSocketShare = WebSocket.acceptWithActor[String, String] { request =>
     out =>
       StupidVar.a = out :: StupidVar.a
       MyWebSocketActor.props(out)
   }
-
-  def javascriptRoutes = Action { implicit request =>
-    Ok(
-      Routes.javascriptRouter("jsRoutes")(
-        routes.javascript.Application.saveImage
-      )
-    ).as("text/javascript")
-  }
-
-
 
 
 

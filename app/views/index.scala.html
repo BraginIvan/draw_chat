@@ -1,51 +1,10 @@
-@(message: String)(implicit request: RequestHeader)
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
 
-
-@main{message}{
-    <script>
-       $(document).ready(function(){
-
-            //Open a WebSocket connection.
-            var wsUri = "@routes.Application.wstest().webSocketURL()";
-            websocket = new WebSocket(wsUri);
-
-            //Connected to server
-            websocket.onopen = function(ev) {}
-
-            //Connection close
-            websocket.onclose = function(ev) {};
-
-            //Message Receved
-            websocket.onmessage = function(ev) {
-
-
-               var request = ev.data.split("_")
-               if(request[0] == "draw"){
-                draw(request[1], request[2], request[3], request[4]);
-                }
-               if(request[0] == "addCanvas"){
-                    add_canvas();
-                }
-                 if(request[0] == "initCanvas"){
-                    init(request[1]);
-                }
-
-            };
-
-
-            //Error
-            websocket.onerror = function(ev) {
-                alert('Error '+ev.data);
-            };
-
-             //Send a Message
-            $('#send').click(function(){
-                var mymessage = 'This is a test message';
-                websocket.send(mymessage);
-            });
-
-
-
-        });
-    </script>
-}
+</body>
+</html>

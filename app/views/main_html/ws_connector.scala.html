@@ -1,0 +1,25 @@
+@(message: String)(implicit request: RequestHeader)
+
+
+@main_html.interactive{message}{
+<script>
+      $(document).ready(function(){
+
+            var wsUri = "@routes.Application.webSocketShare().webSocketURL()";
+            websocket = new WebSocket(wsUri);
+
+            websocket.onopen = function(ev) {}
+
+            websocket.onclose = function(ev) {};
+
+            websocket.onmessage = function(ev) {
+                onMessege(ev);
+            };
+
+            websocket.onerror = function(ev) {
+                alert('Error '+ ev.data);
+            };
+
+        });
+    </script>
+}

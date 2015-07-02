@@ -52,6 +52,6 @@ function UploadPic() {
       processData: false,
       contentType: false,
     }).done(function(o) {
-      console.log(o);
+
     });
 }
