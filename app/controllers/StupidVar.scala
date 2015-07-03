@@ -7,5 +7,5 @@ import akka.actor.ActorRef
  */
 object StupidVar {
 
-  var a: List[ActorRef] = List.empty[ActorRef]
+  val a: scala.collection.mutable.Map[ActorRef, String] = scala.collection.mutable.Map.empty[ActorRef, String]
 }

@@ -22,12 +22,17 @@ class Application extends Controller {
   }
 
 
-  def webSocketShare = WebSocket.acceptWithActor[String, String] { request =>
+  def webSocketShare(sessionId:String) = WebSocket.acceptWithActor[String, String] { request =>
     out =>
-      StupidVar.a = out :: StupidVar.a
-      MyWebSocketActor.props(out)
+      StupidVar.a += (out -> sessionId)
+      MyWebSocketActor.props(out, sessionId)
   }
 
+
+  def connectSession(id:String) = Action {implicit request =>
+
+    Ok(views.html.main_html.ws_connector(id))
+  }
 
 
   def saveImage = Action(parse.multipartFormData) {implicit request =>

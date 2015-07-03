@@ -5,7 +5,7 @@
 <script>
       $(document).ready(function(){
 
-            var wsUri = "@routes.Application.webSocketShare().webSocketURL()";
+            var wsUri = "@routes.Application.webSocketShare(message).webSocketURL()";
             websocket = new WebSocket(wsUri);
 
             websocket.onopen = function(ev) {}
