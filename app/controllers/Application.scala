@@ -1,18 +1,10 @@
 package controllers
 
-import java.io.{File, PrintWriter}
+import java.io.File
 
-import akka.actor.ActorRef
-import play.api._
-import play.api.libs.Files.TemporaryFile
-import play.api.libs.iteratee.{Enumerator, Iteratee}
-import play.api.mvc.MultipartFormData.FilePart
-import play.api.mvc.WebSocket.FrameFormatter
-import play.api.mvc._
+import controllers.web_socket.{Client, MyWebSocketActor}
 import play.api.Play.current
-import play.api.libs.json._
-
-import scala.concurrent.ExecutionContext
+import play.api.mvc._
 
 class Application extends Controller {
 
@@ -24,8 +16,9 @@ class Application extends Controller {
 
   def webSocketShare(sessionId:String) = WebSocket.acceptWithActor[String, String] { request =>
     out =>
-      StupidVar.a += (out -> sessionId)
-      MyWebSocketActor.props(out, sessionId)
+      val client = new Client(out)
+      StupidVar.a += (client -> sessionId)
+      MyWebSocketActor.props(client, sessionId)
   }
 
 
@@ -35,19 +28,35 @@ class Application extends Controller {
   }
 
 
-  def saveImage = Action(parse.multipartFormData) {implicit request =>
+  def saveImage(sessionId:String) = Action(parse.multipartFormData) {implicit request =>
     val image_count = request.body.asFormUrlEncoded.getOrElse("pic_count", Seq("0")).head.toInt
     (0 until image_count).map {imageNumber =>
       request.body.file("pic" + imageNumber).map { picture =>
         val filename = picture.filename
         val contentType = picture.contentType
-        val file: File = new File(s"/home/ivan/$imageNumber.png")
+        val sessionDir = new File(s"./public/images/chat/$sessionId")
+        if(!sessionDir.exists()) {
+          sessionDir.mkdir()
+        }
+        val file: File = new File(s"./public/images/chat/$sessionId/${imageNumber + 1}.png")
         file.getAbsoluteFile.delete()
         picture.ref.moveTo(file.getAbsoluteFile)
       }
     }
     Ok("")
   }
+
+
+  def sessionInfo(sessionId:String) = Action {implicit request =>
+    val sessionDir = new File(s"./public/images/chat/$sessionId")
+    if(!sessionDir.exists())
+      sessionDir.mkdir()
+    if(sessionDir.listFiles().isEmpty)
+      Ok("")
+    else
+      Ok(sessionDir.listFiles().map(_.getName).mkString("_"))
+  }
+
 
 
 

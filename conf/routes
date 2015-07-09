@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index
-POST    /save_image                 controllers.Application.saveImage
+POST    /session/:session_id/session_info                 controllers.Application.sessionInfo(session_id)
+POST    /session/:session_id/save_image                 controllers.Application.saveImage(session_id)
 GET     /wsshare                    controllers.Application.webSocketShare(session_id:String)
 GET     /session/:session_id        controllers.Application.connectSession(session_id:String)
 

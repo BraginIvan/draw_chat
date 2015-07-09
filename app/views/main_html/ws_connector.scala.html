@@ -8,7 +8,10 @@
             var wsUri = "@routes.Application.webSocketShare(message).webSocketURL()";
             websocket = new WebSocket(wsUri);
 
-            websocket.onopen = function(ev) {}
+            websocket.onopen = function(ev) {
+                websocket.send("new_")
+
+            };
 
             websocket.onclose = function(ev) {};
 
