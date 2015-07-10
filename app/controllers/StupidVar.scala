@@ -8,5 +8,5 @@ import controllers.web_socket.Client
  */
 object StupidVar {
 
-  val a: scala.collection.mutable.Map[Client, String] = scala.collection.mutable.Map.empty[Client, String]
+  val a: scala.collection.mutable.Set[Client] = scala.collection.mutable.Set.empty[Client]
 }

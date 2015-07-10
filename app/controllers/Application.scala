@@ -16,9 +16,9 @@ class Application extends Controller {
 
   def webSocketShare(sessionId:String) = WebSocket.acceptWithActor[String, String] { request =>
     out =>
-      val client = new Client(out)
-      StupidVar.a += (client -> sessionId)
-      MyWebSocketActor.props(client, sessionId)
+      val client = new Client(out, sessionId)
+      StupidVar.a += client
+      MyWebSocketActor.props(client)
   }
 
 
