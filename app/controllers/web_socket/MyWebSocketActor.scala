@@ -10,7 +10,6 @@ object MyWebSocketActor {
 
 class MyWebSocketActor(client: Client) extends Actor {
 
-
   def receive = {
 
     case msg: String =>

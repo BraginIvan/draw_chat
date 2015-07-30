@@ -1,0 +1,49 @@
+#top_menu{
+ height: 100px;
+ width:100%;
+}
+
+
+#left_menu{
+float:left;
+height: 100%;
+width:180px;
+}
+
+#logo{
+float:left;
+background-image:url("/assets/images/logo.png");
+ height: 100px;
+
+width:180px;
+}
+
+
+.resizer{
+ background-repeat:no-repeat;
+ background-position: center center;
+ position:absolute;
+}
+
+#resizer-right{
+ height:100%;
+ width:20px;
+ background-image: url("/assets/images/v_resizer.png");
+
+}
+
+#resizer-center{
+ height:20px;
+ width:100%;
+ background-image: url("/assets/images/h_resizer.png");
+
+}
+
+#tests_column{
+border-left:1px solid #ccc;
+ height:100%;
+}
+
+#image_activators{
+float: left;
+}

@@ -3,7 +3,6 @@ $( window ).resize(function() {
 });
 
 
-
 function init_sizes(){
 
 document.getElementById('content').style.width =

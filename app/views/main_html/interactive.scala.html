@@ -9,6 +9,7 @@
 <head>
     <title>title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/test.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     <script src="http://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
     <script src="http://code.interactjs.io/interact-1.2.4.min.js" type="text/javascript"></script>
@@ -26,8 +27,10 @@
 <body onload="init_sizes();">
 
 
-<div id="top_menu">
 
+<div id="top_menu">
+    <div id="logo"></div>
+    <div id="image_activators"></div>
     <div class="action_can" id="add_can"  onclick="add_canvas_request()">add</div>
     <div class="action_can" id="save"  onclick="UploadPic()">download</div>
 </div>
@@ -38,12 +41,12 @@
 <div id="content">
     <fieldset class="column left" id = "column_left">
         <div id="column_left_top" class="window top scrolable"> </div>
-        <div id="resizer-center" ></div>
+        <div id="resizer-center" class="resizer"></div>
         <div id="column_left_bottom" class="window bottom scrolable" >
 
         </div>
     </fieldset>
-    <div id="resizer-right" style="height:100%; width:20px;background-color:yellow;position:absolute;"></div>
+    <div id="resizer-right" class="resizer"></div>
     <fieldset class="column right" id = "column_right" >
         <div id="tests_column">fcj</div>
     </fieldset>

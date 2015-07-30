@@ -22,4 +22,4 @@ var session_id;
        for (i = 0; i < itemsArr.length; ++i) {
          element.appendChild(itemsArr[i]);
        }
-     }
+   }

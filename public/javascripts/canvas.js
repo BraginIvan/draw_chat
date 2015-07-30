@@ -1,8 +1,6 @@
 
 flag = false;
 
-
-
 function init_request(i){
       websocket.send("initCanvas_" + i);
 }

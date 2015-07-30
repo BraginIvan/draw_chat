@@ -8,7 +8,6 @@ import play.api.mvc._
 
 class Application extends Controller {
 
-
   def index = Action {implicit request =>
     Ok(views.html.main_html.ws_connector("Your new application is ready."))
   }

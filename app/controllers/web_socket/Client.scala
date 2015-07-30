@@ -9,4 +9,5 @@ class Client(out: ActorRef, sessionId: String) {
   def session = sessionId
   def link = out
   var isNew = true
+
 }

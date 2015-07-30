@@ -2,9 +2,10 @@ function add_canvas_request(){
    websocket.send("addCanvas_");
 }
 
+
 function add_canvas(numCanvas){
     var nextCanvas = 0;
-           var canvasesParent = document.getElementById('column_left_top');
+    var canvasesParent = document.getElementById('column_left_top');
 
     if(typeof numCanvas == 'undefined'){
         var childNodes = canvasesParent.children;
@@ -22,17 +23,14 @@ function add_canvas(numCanvas){
   newCanvas.width = 2000;
   canvasesParent.appendChild(newCanvas);
 
-  var canvasesButtonsParent = document.getElementById('top_menu')
+  var canvasesButtonsParent = document.getElementById('image_activators')
   var newCanvasButton = document.createElement('div');
   newCanvasButton.className = "action_can";
   newCanvasButton.id = "can" + nextCanvas;
   newCanvasButton.onclick = function(){init_request(nextCanvas)}
-  canvasesButtonsParent.insertBefore(newCanvasButton, document.getElementById('add_can'));
+  canvasesButtonsParent.appendChild(newCanvasButton);
 
   sortChildren(canvasesButtonsParent)
-
-
-
 
 
   return nextCanvas;

@@ -53,31 +53,7 @@ overflow: auto;
 
 #content .left { position: absolute; left: 0px; }
 
-#tests_column{
-background-color:red;
-}
 
-#left_menu{
-float:left;
-height: 100%;
-width:200px;
-border:1px solid red;
-}
-
-#top_menu{
- height: 150px;
- width:100%;
- border:1px solid red;
-}
-
-
-
-#resizer-center{
- height:20px;
- width:100%;
- background-color:
- blue;position:absolute;
-}
 
 
 
