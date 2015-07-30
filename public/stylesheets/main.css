@@ -5,10 +5,11 @@
 }
 
 .action_can{
-height:100px;
- width:100px;
+height:80px;
+ width:120px;
  float:left;
  border:1px solid #ccc;
+ background-color:#fff;
 }
 
 html, body{

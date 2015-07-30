@@ -10,11 +10,18 @@
     <title>title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/test.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/component.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/font-awesome-4.3.0/css/font-awesome.min.css")">
+
+
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     <script src="http://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
     <script src="http://code.interactjs.io/interact-1.2.4.min.js" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("javascripts/web_socket_actions.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/button_effects/modernizr.custom.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/button_effects/classie.js")"></script>
+
 
     @script
     <script src="@routes.Assets.versioned("javascripts/canvas.js")" type="text/javascript"></script>
@@ -30,9 +37,14 @@
 
 <div id="top_menu">
     <div id="logo"></div>
+
     <div id="image_activators"></div>
-    <div class="action_can" id="add_can"  onclick="add_canvas_request()">add</div>
-    <div class="action_can" id="save"  onclick="UploadPic()">download</div>
+    <button class="cbutton cbutton--effect-boris">
+        <i class="cbutton__icon fa fa-fw fa-add"></i>
+        <span class="cbutton__text">Play</span>
+    </button>
+    <div  id="add_can"  onclick="add_canvas_request()">add</div>
+    <div  id="save"  onclick="UploadPic()">download</div>
 </div>
 
 <div id="left_menu"></div>
@@ -55,7 +67,7 @@
 
 
 
-
+<script src="@routes.Assets.versioned("javascripts/button_effects/effect.js")"></script>
 </body>
 
 </html>
