@@ -10,8 +10,8 @@
     <title>title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/test.css")">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/component.css")">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/font-awesome-4.3.0/css/font-awesome.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/buttons.css")">
+
 
 
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
@@ -39,12 +39,9 @@
     <div id="logo"></div>
 
     <div id="image_activators"></div>
-    <button class="cbutton cbutton--effect-boris">
-        <i class="cbutton__icon fa fa-fw fa-add"></i>
-        <span class="cbutton__text">Play</span>
-    </button>
-    <div  id="add_can"  onclick="add_canvas_request()">add</div>
-    <div  id="save"  onclick="UploadPic()">download</div>
+
+    <div style="float:left; margin:23px 0px 23px 23px;cursor: pointer;" class="button oval blue icon"  onclick="add_canvas_request()" data-icon="×"></div>
+    <div style="float:left; margin:23px 0px 23px 23px;cursor: pointer;" class="button oval blue icon"  onclick="UploadPic()"  data-icon="с"></div>
 </div>
 
 <div id="left_menu"></div>
