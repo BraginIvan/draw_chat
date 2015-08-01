@@ -14,17 +14,21 @@ class MyWebSocketActor(client: Client) extends Actor {
 
     case msg: String =>
       val sessionUsers = StupidVar.a.filter(_.session == this.client.session)
+      if(msg == "close_") StupidVar.a.-=(this.client)
       if(msg == "new_") {
         val sessionFriends = sessionUsers.filter(_.link != this.client.link)
-        if(sessionFriends.isEmpty)
+        if (sessionFriends.isEmpty) {
           this.client.isNew = false
-        sessionFriends.foreach(v => v.link ! msg)
-        sessionFriends.headOption.foreach(_.link ! "upload_")
+          self ! "synchronize"
+        }else {
+          sessionFriends.foreach(v => v.link ! msg)
+          sessionFriends.headOption.foreach(_.link ! "upload_")
+        }
       }
-      if(msg == "synchronize") {
-        sessionUsers.filter(v => v.isNew).foreach{v =>
+      if(msg == "uploadDone") {
+        sessionUsers.filter(_.isNew).foreach{v =>
           v.isNew = false
-          v.link ! msg
+          v.link ! "synchronize"
         }
 
       }

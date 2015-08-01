@@ -1,7 +1,7 @@
 var session_id;
  $(document).ready(function(){
         var tmp_array = document.URL.split("/");
-     session_id = tmp_array[tmp_array.length-1];
+        session_id = tmp_array[tmp_array.length-1];
      });
 
      function sortChildren(element){

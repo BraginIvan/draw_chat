@@ -9,9 +9,6 @@ function onMessege(ev){
     if(request[0] == "initCanvas"){
          init(request[1]);
     }
-    if(request[0] == "new"){
-
-    }
     if(request[0] == "upload"){
         UploadPic();
     }
@@ -19,7 +16,7 @@ function onMessege(ev){
         synchronize();
     }
     if(request[0] == "test"){
-           alert("test msg");
+           alert("test msg " );
         }
 
 }

@@ -61,6 +61,6 @@ function UploadPic() {
       processData: false,
       contentType: false,
     }).done(function(o) {
-        websocket.send("synchronize");
+        websocket.send("uploadDone");
     });
 }
