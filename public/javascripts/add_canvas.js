@@ -30,37 +30,10 @@ function add_canvas(numCanvas){
   newCanvasButton.onclick = function(){init_request(nextCanvas)}
   canvasesButtonsParent.appendChild(newCanvasButton);
 
-  sortChildren(canvasesButtonsParent)
-
+  sortChildren(canvasesButtonsParent);
 
   return nextCanvas;
 }
 
 
 
-function UploadPic() {
-    var formdata = new FormData();
-    var imageCanvases = document.getElementsByClassName('canvas');
-    formdata.append("pic_count", imageCanvases.length);
-    for (var j = 0; j < imageCanvases.length; j++) {
-        var blobBin = atob(imageCanvases[j].toDataURL().split(',')[1]);
-        var array = [];
-        for(var i = 0; i < blobBin.length; i++) {
-            array.push(blobBin.charCodeAt(i));
-        }
-        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
-        formdata.append("pic" + j, file);
-    }
-
-    var tmp_array = document.URL.split("/");
-    var session_id = tmp_array[tmp_array.length-1];
-    $.ajax({
-      type: "POST",
-      url: session_id + "/save_image",
-      data: formdata,
-      processData: false,
-      contentType: false,
-    }).done(function(o) {
-        websocket.send("uploadDone");
-    });
-}

@@ -25,10 +25,10 @@ class MyWebSocketActor(client: Client) extends Actor {
           sessionFriends.headOption.foreach(_.link ! "upload_")
         }
       }
-      if(msg == "uploadDone") {
+      if(msg.startsWith("uploadDone")) {
         sessionUsers.filter(_.isNew).foreach{v =>
           v.isNew = false
-          v.link ! "synchronize"
+          v.link ! "synchronize_" + msg.split("_").apply(1)
         }
 
       }

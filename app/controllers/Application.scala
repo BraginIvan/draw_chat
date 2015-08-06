@@ -29,6 +29,7 @@ class Application extends Controller {
 
   def saveImage(sessionId:String) = Action(parse.multipartFormData) {implicit request =>
     val image_count = request.body.asFormUrlEncoded.getOrElse("pic_count", Seq("0")).head.toInt
+    val activeCanvas = request.body.asFormUrlEncoded.getOrElse("activ_canvas", Seq("1")).head.toInt
     (0 until image_count).map {imageNumber =>
       request.body.file("pic" + imageNumber).map { picture =>
         val filename = picture.filename

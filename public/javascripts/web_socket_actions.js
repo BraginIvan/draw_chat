@@ -4,7 +4,7 @@ function onMessege(ev){
           draw(request[1], request[2], request[3], request[4]);
     }
     if(request[0] == "addCanvas"){
-         add_canvas();
+         init(add_canvas());
     }
     if(request[0] == "initCanvas"){
          init(request[1]);
@@ -14,9 +14,10 @@ function onMessege(ev){
     }
     if(request[0] == "synchronize"){
         synchronize();
+        activeLauncher = request[1]
     }
     if(request[0] == "test"){
-           alert("test msg " );
+           alert("test msg");
         }
 
 }

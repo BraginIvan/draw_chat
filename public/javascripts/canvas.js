@@ -1,4 +1,4 @@
-
+activeCanvas = 0;
 flag = false;
 
 function init_request(i){
@@ -6,7 +6,7 @@ function init_request(i){
 }
 
 function init(i) {
-
+    activeCanvas = i;
     Array.prototype.filter.call(document.getElementsByClassName('canvas'), function(el){
        return el.style.display = 'none';
    });
@@ -27,7 +27,7 @@ function init(i) {
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
-
+    signLauncher(i)
 }
 
 
