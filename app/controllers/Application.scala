@@ -9,27 +9,26 @@ import play.api.mvc._
 class Application extends Controller {
 
   def index = Action {implicit request =>
-    Ok(views.html.main_html.ws_connector("Your new application is ready."))
+    Ok(views.html.socket.ws_connector("Your new application is ready."))
   }
 
 
   def webSocketShare(sessionId:String) = WebSocket.acceptWithActor[String, String] { request =>
     out =>
       val client = new Client(out, sessionId)
-      StupidVar.a += client
+      Clients.allClients += client
       MyWebSocketActor.props(client)
   }
 
 
   def connectSession(id:String) = Action {implicit request =>
 
-    Ok(views.html.main_html.ws_connector(id))
+    Ok(views.html.socket.ws_connector(id))
   }
 
 
   def saveImage(sessionId:String) = Action(parse.multipartFormData) {implicit request =>
     val image_count = request.body.asFormUrlEncoded.getOrElse("pic_count", Seq("0")).head.toInt
-    val activeCanvas = request.body.asFormUrlEncoded.getOrElse("activ_canvas", Seq("1")).head.toInt
     (0 until image_count).map {imageNumber =>
       request.body.file("pic" + imageNumber).map { picture =>
         val filename = picture.filename
@@ -57,7 +56,9 @@ class Application extends Controller {
       Ok(sessionDir.listFiles().map(_.getName).mkString("_"))
   }
 
-
+  def ScienceRouting(scienceName:String) = Action { implicit request =>
+    Ok(views.html.science.physics.main(scienceName))
+  }
 
 
 }

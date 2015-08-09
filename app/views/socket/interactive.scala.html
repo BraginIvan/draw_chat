@@ -29,11 +29,13 @@
     <script src="@routes.Assets.versioned("javascripts/design.js")" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("javascripts/resize.js")" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("javascripts/synchronize_session.js")" type="text/javascript"></script>
+     <script src="@routes.Assets.versioned("javascripts/science/asynchLoading.js")" type="text/javascript"></script>
     <!--<script src="@routes.Assets.versioned("javascripts/menu.js")" type="text/javascript"></script>-->
 
 </head>
-<body onload="init_sizes();">
+<body onload="loadPage('physics');init_sizes();">
 <script>
+
 window.onbeforeunload = function() {
  websocket.send("close_");
 return "Hey, you're leaving the site. Bye!";
@@ -57,6 +59,7 @@ return "Hey, you're leaving the site. Bye!";
         <div id="column_left_top" class="window top scrolable"> </div>
         <div id="resizer-center" class="resizer"></div>
         <div id="column_left_bottom" class="window bottom scrolable" >
+            <div id="science_content"></div>
 
         </div>
     </fieldset>
@@ -69,7 +72,6 @@ return "Hey, you're leaving the site. Bye!";
 
 
 
-<script src="@routes.Assets.versioned("javascripts/button_effects/effect.js")"></script>
 </body>
 
 </html>

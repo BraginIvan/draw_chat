@@ -3,11 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                                       controllers.Application.index
 POST    /session/:session_id/session_info                 controllers.Application.sessionInfo(session_id)
 POST    /session/:session_id/save_image                 controllers.Application.saveImage(session_id)
-GET     /wsshare                    controllers.Application.webSocketShare(session_id:String)
-GET     /session/:session_id        controllers.Application.connectSession(session_id:String)
+GET     /wsshare                                controllers.Application.webSocketShare(session_id:String)
+GET     /session/:session_id                    controllers.Application.connectSession(session_id:String)
+
+
+# physics
+POST     /science/:science_name                   controllers.Application.ScienceRouting(science_name:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

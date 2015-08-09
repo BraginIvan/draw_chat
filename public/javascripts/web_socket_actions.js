@@ -13,12 +13,13 @@ function onMessege(ev){
         UploadPic();
     }
     if(request[0] == "synchronize"){
-        synchronize();
         activeLauncher = request[1]
+        synchronize();
     }
     if(request[0] == "test"){
            alert("test msg");
         }
+
 
 }
 

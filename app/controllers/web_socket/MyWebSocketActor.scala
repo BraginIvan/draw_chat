@@ -1,7 +1,9 @@
 package controllers.web_socket
 
 import akka.actor._
-import controllers.StupidVar
+import controllers.Clients
+
+import scala.collection.mutable
 
 
 object MyWebSocketActor {
@@ -9,35 +11,35 @@ object MyWebSocketActor {
 }
 
 class MyWebSocketActor(client: Client) extends Actor {
-
+  val uploadDone = "uploadDone_([0-9]+)".r
   def receive = {
 
     case msg: String =>
-      val sessionUsers = StupidVar.a.filter(_.session == this.client.session)
-      if(msg == "close_") StupidVar.a.-=(this.client)
-      if(msg == "new_") {
-        val sessionFriends = sessionUsers.filter(_.link != this.client.link)
-        if (sessionFriends.isEmpty) {
-          this.client.isNew = false
-          self ! "synchronize"
-        }else {
-          sessionFriends.foreach(v => v.link ! msg)
-          sessionFriends.headOption.foreach(_.link ! "upload_")
-        }
+      val sessionUsers = Clients.sessionClients(this.client.session)
+      msg match {
+        case "close_" => Clients.removeClient(this.client)
+        case "new_" =>
+          val sessionFriends = sessionUsers.filter(_.link != this.client.link)
+          if (sessionFriends.isEmpty) {
+            this.client.isNew = false
+            this.client.link ! "synchronize_"
+          }else {
+            sessionFriends.foreach(_.link ! msg)
+            sessionFriends.head.link ! "upload_"
+          }
+        case uploadDone(activeLauncher) =>
+          sessionUsers.filter(_.isNew).foreach{v =>
+            v.isNew = false
+            v.link ! "synchronize_" + activeLauncher
+          }
+        case _ @ m => sessionUsers.foreach(_.link ! m)
       }
-      if(msg.startsWith("uploadDone")) {
-        sessionUsers.filter(_.isNew).foreach{v =>
-          v.isNew = false
-          v.link ! "synchronize_" + msg.split("_").apply(1)
-        }
 
-      }
-      else
-        sessionUsers.foreach(v => v.link ! msg)
+
 
   }
 
   override def postStop() = {
-    StupidVar.a - this.client
+    Clients.allClients - this.client
   }
 }
