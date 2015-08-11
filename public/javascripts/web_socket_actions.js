@@ -16,12 +16,18 @@ function onMessege(ev){
         activeLauncher = request[1]
         synchronize();
     }
+    if(request[0] == "here"){
+              websocket.send("here_");;
+            }
     if(request[0] == "test"){
-           alert("test msg");
+           alert("test msg" + request[1]);
         }
-
-
 }
+
+
+$(document).ready(function(){
+        //setInterval(function () {websocket.send("here_" + i);}, 3000);
+});
 
 
 

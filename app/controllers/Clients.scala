@@ -8,7 +8,7 @@ import controllers.web_socket.Client
  */
 object Clients {
   val allClients = scala.collection.mutable.Set.empty[Client]
-  def removeClient(client:Client) =  allClients.-(client)
+  def removeClient(client:Client) =  allClients.-=(client)
   def sessionClients(sessionId:String) =  allClients.filter(_.session == sessionId).toSeq
 
 }

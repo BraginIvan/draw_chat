@@ -34,13 +34,6 @@
 
 </head>
 <body onload="loadPage('physics');init_sizes();">
-<script>
-
-window.onbeforeunload = function() {
- websocket.send("close_");
-return "Hey, you're leaving the site. Bye!";
-};
-</script>
 
 <div id="top_menu">
     <div id="logo"></div>

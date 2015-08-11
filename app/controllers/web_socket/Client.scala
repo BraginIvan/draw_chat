@@ -8,5 +8,6 @@ import akka.actor.ActorRef
 class Client(out: ActorRef, sessionId: String) {
   def session = sessionId
   def link = out
+  val link1 = out
   var isNew = true
 }
