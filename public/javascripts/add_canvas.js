@@ -37,3 +37,10 @@ function add_canvas(numCanvas){
 
 
 
+function remove_canvas_request(remove_canvas_request){
+    document.getElementById('can' + activeCanvas).remove();
+    canvas.remove();;
+}
+
+
+

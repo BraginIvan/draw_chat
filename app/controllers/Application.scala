@@ -2,7 +2,7 @@ package controllers
 
 import java.io.File
 
-import controllers.web_socket.{Client, MyWebSocketActor}
+import controllers.web_socket.{Clients, Client, MyWebSocketActor}
 import play.api.Play.current
 import play.api.mvc._
 

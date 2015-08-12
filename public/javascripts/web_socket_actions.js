@@ -25,9 +25,5 @@ function onMessege(ev){
 }
 
 
-$(document).ready(function(){
-        //setInterval(function () {websocket.send("here_" + i);}, 3000);
-});
-
 
 
