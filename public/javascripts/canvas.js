@@ -6,8 +6,8 @@ function init_request(i){
 }
 
 function init(i) {
-
     activeCanvas = i;
+
     Array.prototype.filter.call(document.getElementsByClassName('canvas'), function(el){
        return el.style.display = 'none';
    });

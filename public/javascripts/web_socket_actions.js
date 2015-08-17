@@ -6,6 +6,9 @@ function onMessege(ev){
     if(request[0] == "addCanvas"){
          init(add_canvas());
     }
+    if(request[0] == "removeCanvas"){
+            remove_canvas()
+    }
     if(request[0] == "initCanvas"){
          init(request[1]);
     }
@@ -14,14 +17,13 @@ function onMessege(ev){
     }
     if(request[0] == "synchronize"){
         activeLauncher = request[1]
-        synchronize();
+            synchronize();
     }
-    if(request[0] == "here"){
-              websocket.send("here_");;
-            }
     if(request[0] == "test"){
            alert("test msg" + request[1]);
         }
+
+
 }
 
 

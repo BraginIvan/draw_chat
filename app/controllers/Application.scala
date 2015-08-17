@@ -29,14 +29,15 @@ class Application extends Controller {
 
   def saveImage(sessionId:String) = Action(parse.multipartFormData) {implicit request =>
     val image_count = request.body.asFormUrlEncoded.getOrElse("pic_count", Seq("0")).head.toInt
+    val sessionDir = new File(s"./public/images/chat/$sessionId")
+    sessionDir.mkdir()
+    sessionDir.listFiles().map(_.delete())
     (0 until image_count).map {imageNumber =>
       request.body.file("pic" + imageNumber).map { picture =>
         val filename = picture.filename
         val contentType = picture.contentType
-        val sessionDir = new File(s"./public/images/chat/$sessionId")
-        if(!sessionDir.exists()) {
-          sessionDir.mkdir()
-        }
+
+
         val file: File = new File(s"./public/images/chat/$sessionId/${imageNumber + 1}.png")
         file.getAbsoluteFile.delete()
         picture.ref.moveTo(file.getAbsoluteFile)

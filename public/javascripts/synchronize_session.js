@@ -19,7 +19,8 @@ function loadNext(imgPathes){
     if(imgPathes.length > 1)
         loadNext(imgPathes.slice(1));
     else
-        if(activeLauncher) init(activeLauncher);
+        if(activeLauncher != 0)  init(activeLauncher);
+
   };
   img.src = "/assets/images/chat/" + session_id +"/" + imgPathes[0];
 }

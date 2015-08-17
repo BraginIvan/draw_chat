@@ -2,6 +2,10 @@ function add_canvas_request(){
    websocket.send("addCanvas_");
 }
 
+function remove_canvas_request(){
+   websocket.send("removeCanvas_");
+}
+
 
 function add_canvas(numCanvas){
     var nextCanvas = 0;
@@ -37,9 +41,25 @@ function add_canvas(numCanvas){
 
 
 
-function remove_canvas_request(remove_canvas_request){
+function remove_canvas(){
     document.getElementById('can' + activeCanvas).remove();
-    canvas.remove();;
+    canvas.remove();
+    tmp =activeCanvas;
+    resetCanvasButton(parseInt(activeCanvas) + 1);
+     if(document.getElementById('can' + tmp))
+       init(tmp);
+        else
+     init(parseInt(activeCanvas) - 1);
+}
+
+function resetCanvasButton(num){
+      if(document.getElementById('can' + num )){
+        var button = document.getElementById('can' + num)
+        button.id = 'can' + (num - 1);
+        button.onclick = function(){init_request(num - 1)}
+        document.getElementsByClassName( 'canvas canvas'  + num)[0].className =  'canvas canvas'  + (num - 1);
+        resetCanvasButton(num + 1)
+      }
 }
 
 
