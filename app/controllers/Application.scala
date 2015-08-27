@@ -57,9 +57,6 @@ class Application extends Controller {
       Ok(sessionDir.listFiles().map(_.getName).mkString("_"))
   }
 
-  def ScienceRouting(scienceName:String) = Action { implicit request =>
-    Ok(views.html.science.physics.main(scienceName))
-  }
 
 
 }

@@ -1,7 +1,8 @@
-function loadPage(scienceName){
+function loadPage(theme, lesson, action, element){
+ // alert( element.onclick);
     $.ajax({
       type: "POST",
-      url: "/science/" + scienceName,
+      url: "/science/" + theme + "/" + lesson + "/" + action,
       processData: false,
       contentType: false,
     }).done(function(scienceHtml) {
